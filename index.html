@@ -1,242 +1,147 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2775.1">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 18.0px Helvetica; min-height: 22.0px}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'}
-    span.s1 {font: 18.0px Helvetica}
-    span.s2 {font: 13.0px 'Helvetica Neue'}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mantenimiento NFC - Planta</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 15px; color: #333; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { color: #0056b3; text-align: center; margin-top: 0; }
+        .card { background: #e9ecef; padding: 12px; border-radius: 6px; margin-bottom: 15px; }
+        label { font-weight: bold; display: block; margin-top: 10px; font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background: #0056b3; color: white; border: none; padding: 12px; width: 100%; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        button:hover { background: #004494; }
+        .hidden { display: none; }
+        .offline-badge { background: #ffc107; color: #856404; padding: 5px; text-align: center; font-size: 12px; border-radius: 3px; margin-bottom: 10px; }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="es"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Mantenimiento NFC - Planta&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 15px; color: #333; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>h2 { color: #0056b3; text-align: center; margin-top: 0; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.card { background: #e9ecef; padding: 12px; border-radius: 6px; margin-bottom: 15px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>label { font-weight: bold; display: block; margin-top: 10px; font-size: 14px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>button { background: #0056b3; color: white; border: none; padding: 12px; width: 100%; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>button:hover { background: #004494; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hidden { display: none; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.offline-badge { background: #ffc107; color: #856404; padding: 5px; text-align: center; font-size: 12px; border-radius: 3px; margin-bottom: 10px; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Sistema NFC Mantenimiento&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="offlineAlert" class="hidden offline-badge"&gt;Modo Sin Conexión: Los datos se guardarán y sincronizarán al recuperar señal.&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- PASO 1: LOGIN CON CLAVE --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="loginSection"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p id="infoEquipoDisplay"&gt;&lt;strong&gt;Equipo detectado:&lt;/strong&gt; Cargando...&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="inputClave"&gt;Ingrese su Clave (PIN):&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="password" id="inputClave" placeholder="Ej: 1234" pattern="[0-9]*" inputmode="numeric"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="validarAcceso()"&gt;Acceder&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- PASO 2: PANEL Y FORMULARIO --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="appSection" class="hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card" id="detallesEquipo"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Datos del equipo cargados del Sheet --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="formMantenimiento" class="hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3&gt;Cargar Control / Mantenimiento&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Corriente R (A):&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="number" id="corrienteR" step="0.1"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Tensión (V):&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="number" id="tension" step="0.1"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Carga Turbina (MW):&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="number" id="cargaTurbina" step="0.1"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Temperatura Ataque (°C):&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="number" id="tempAtaque" step="0.1"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Temperatura Opuesto (°C):&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="number" id="tempOpuesto" step="0.1"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Acción Realizada:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;select id="accion"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="Revisión Normal"&gt;Revisión Normal&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="Engrase"&gt;Engrase&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="Ajuste de Bornes"&gt;Ajuste de Bornes&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="Reparación"&gt;Reparación&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/select&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Detalles y Parámetros:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;textarea id="detalles" rows="3" placeholder="Describa tareas o novedades..."&gt;&lt;/textarea&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button onclick="enviarRegistro()"&gt;Guardar Registro&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT WEB APP</p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>const WEB_APP_URL = "<a href="https://script.google.com/macros/s/AKfycbw-mnezpxNRARd-nBZ2HInM5VQMF2T8oT-3whMmoVP416k0BBr7H-xrRSz9zUeGx0Hb_g/exec"><span class="s2">https://script.google.com/macros/s/AKfycbw-mnezpxNRARd-nBZ2HInM5VQMF2T8oT-3whMmoVP416k0BBr7H-xrRSz9zUeGx0Hb_g/exec</span></a>";</span></p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Obtener ID de equipo desde la URL (ej: ?equipo=BOMBA 15)</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const urlParams = new URLSearchParams(window.location.search);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const idEquipo = urlParams.get('equipo') || "BOMBA 15"; // Valor por defecto para pruebas</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>let datosUsuario = null;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('infoEquipoDisplay').innerHTML = `&lt;strong&gt;Equipo detectado:&lt;/strong&gt; ${idEquipo}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Verificar estado de conexión</p>
-<p class="p1"><span class="Apple-converted-space">    </span>window.addEventListener('online', actualizarConexion);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>window.addEventListener('offline', actualizarConexion);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>function actualizarConexion() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!navigator.onLine) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('offlineAlert').classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('offlineAlert').classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>sincronizarPendientes();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>actualizarConexion();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Validar clave consultando Google Apps Script</p>
-<p class="p1"><span class="Apple-converted-space">    </span>async function validarAcceso() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const clave = document.getElementById('inputClave').value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!clave) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>alert("Por favor ingrese su clave.");</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let respuesta;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (navigator.onLine) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const response = await fetch(`${WEB_APP_URL}?action=validarClave&amp;clave=${clave}`);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>respuesta = await response.json();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Validación offline básica de respaldo si ya se usó antes</p>
-<p class="p1"><span class="Apple-converted-space">                </span>respuesta = { status: "autorizado", perfil: "Técnico Offline", nivelAcceso: 2 };</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (respuesta.status === "autorizado") {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>datosUsuario = respuesta;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>alert(`Bienvenido - Perfil: ${respuesta.perfil} (Nivel ${respuesta.nivelAcceso})`);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('loginSection').classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('appSection').classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>cargarDatosEquipo();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>alert("Clave incorrecta.");</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} catch (error) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>alert("Error de conexión al validar clave.");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Cargar información técnica del equipo</p>
-<p class="p1"><span class="Apple-converted-space">    </span>async function cargarDatosEquipo() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!navigator.onLine) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('detallesEquipo').innerHTML = `&lt;strong&gt;Equipo:&lt;/strong&gt; ${idEquipo} &lt;br&gt;&lt;small&gt;Modo sin conexión (datos básicos)&lt;/small&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (datosUsuario.nivelAcceso &gt;= 2) document.getElementById('formMantenimiento').classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const response = await fetch(`${WEB_APP_URL}?action=getEquipo&amp;id=${idEquipo}`);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const res = await response.json();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (res.status === "encontrado") {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>let eq = res.equipo;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>let html = `&lt;strong&gt;Equipo:&lt;/strong&gt; ${eq.ID_Equipo} - ${eq.Denominación || ''}&lt;br&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>html += `&lt;strong&gt;Sistema:&lt;/strong&gt; ${eq['Sistema / Equipo'] || ''}&lt;br&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>html += `&lt;strong&gt;Potencia:&lt;/strong&gt; ${eq['Potencia KW / CV / HP'] || ''} | &lt;strong&gt;In:&lt;/strong&gt; ${eq['Corriente Nominal ( In )'] || ''}`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('detallesEquipo').innerHTML = html;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Si el nivel de acceso es 2 o superior (Técnico / Ingeniería), mostrar formulario de carga</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (datosUsuario.nivelAcceso &gt;= 2) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('formMantenimiento').classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('detallesEquipo').innerHTML = `Equipo ${idEquipo} no encontrado en el catálogo.`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} catch (e) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('detallesEquipo').innerHTML = `Error cargando datos del equipo.`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Enviar registro de mantenimiento</p>
-<p class="p1"><span class="Apple-converted-space">    </span>async function enviarRegistro() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const registroData = {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>idEquipo: idEquipo,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>tecnico: datosUsuario.perfil,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>corrienteR: document.getElementById('corrienteR').value,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>tension: document.getElementById('tension').value,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cargaTurbina: document.getElementById('cargaTurbina').value,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>tempAtaque: document.getElementById('tempAtaque').value,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>tempOpuesto: document.getElementById('tempOpuesto').value,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>accion: document.getElementById('accion').value,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>detalles: document.getElementById('detalles').value</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!navigator.onLine) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Guardar en localStorage si no hay internet</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let pendientes = JSON.parse(localStorage.getItem('maint_pendientes') || '[]');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>pendientes.push(registroData);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem('maint_pendientes', JSON.stringify(pendientes));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>alert("Sin conexión: El registro se guardó localmente y se enviará al recuperar señal.");</p>
-<p class="p1"><span class="Apple-converted-space">            </span>limpiarFormulario();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const response = await fetch(WEB_APP_URL, {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>body: JSON.stringify(registroData)</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const result = await response.json();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (result.status === "success") {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>alert("¡Registro guardado exitosamente en el Google Sheet!");</p>
-<p class="p1"><span class="Apple-converted-space">                </span>limpiarFormulario();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>alert("Error al guardar: " + result.message);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} catch (e) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>alert("Error de red al enviar el registro.");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function sincronizarPendientes() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let pendientes = JSON.parse(localStorage.getItem('maint_pendientes') || '[]');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (pendientes.length === 0) return;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Aquí se sincronizarían automáticamente al volver la red</p>
-<p class="p1"><span class="Apple-converted-space">        </span>console.log("Sincronizando registros pendientes...", pendientes);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function limpiarFormulario() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('corrienteR').value = '';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('tension').value = '';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('cargaTurbina').value = '';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('tempAtaque').value = '';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('tempOpuesto').value = '';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('detalles').value = '';</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<div class="container">
+    <h2>Sistema NFC Mantenimiento</h2>
+    <div id="offlineAlert" class="hidden offline-badge">Modo Sin Conexión: Los datos se guardarán y sincronizarán al recuperar señal.</div>
+
+    <div id="loginSection">
+        <div class="card">
+            <p id="infoEquipoDisplay"><strong>Equipo detectado:</strong> Cargando...</p>
+        </div>
+        <label for="inputClave">Ingrese su Clave (PIN):</label>
+        <input type="password" id="inputClave" placeholder="Ej: 1234" pattern="[0-9]*" inputmode="numeric">
+        <button onclick="validarAcceso()">Acceder</button>
+    </div>
+
+    <div id="appSection" class="hidden">
+        <div class="card" id="detallesEquipo"></div>
+        <div id="formMantenimiento" class="hidden">
+            <h3>Cargar Control / Mantenimiento</h3>
+            <label>Corriente R (A):</label>
+            <input type="number" id="corrienteR" step="0.1">
+            <label>Tensión (V):</label>
+            <input type="number" id="tension" step="0.1">
+            <label>Carga Turbina (MW):</label>
+            <input type="number" id="cargaTurbina" step="0.1">
+            <label>Temperatura Ataque (°C):</label>
+            <input type="number" id="tempAtaque" step="0.1">
+            <label>Temperatura Opuesto (°C):</label>
+            <input type="number" id="tempOpuesto" step="0.1">
+            <label>Acción Realizada:</label>
+            <select id="accion">
+                <option value="Revisión Normal">Revisión Normal</option>
+                <option value="Engrase">Engrase</option>
+                <option value="Ajuste de Bornes">Ajuste de Bornes</option>
+                <option value="Reparación">Reparación</option>
+            </select>
+            <label>Detalles y Parámetros:</label>
+            <textarea id="detalles" rows="3" placeholder="Describa tareas o novedades..."></textarea>
+            <button onclick="enviarRegistro()">Guardar Registro</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw-mnezpxNRARd-nBZ2HInM5VQMF2T8oT-3whMmoVP416k0BBr7H-xrRSz9zUeGx0Hb_g/exec";
+    const urlParams = new URLSearchParams(window.location.search);
+    const idEquipo = urlParams.get('equipo') || "BOMBA 15";
+    let datosUsuario = null;
+    document.getElementById('infoEquipoDisplay').innerHTML = `<strong>Equipo detectado:</strong> ${idEquipo}`;
+
+    async function validarAcceso() {
+        const clave = document.getElementById('inputClave').value;
+        if (!clave) { alert("Por favor ingrese su clave."); return; }
+        try {
+            const response = await fetch(`${WEB_APP_URL}?action=validarClave&clave=${clave}`);
+            const respuesta = await response.json();
+            if (respuesta.status === "autorizado") {
+                datosUsuario = respuesta;
+                alert(`Bienvenido - Perfil: ${respuesta.perfil} (Nivel ${respuesta.nivelAcceso})`);
+                document.getElementById('loginSection').classList.add('hidden');
+                document.getElementById('appSection').classList.remove('hidden');
+                cargarDatosEquipo();
+            } else {
+                alert("Clave incorrecta.");
+            }
+        } catch (error) {
+            alert("Error de conexión al validar clave.");
+        }
+    }
+
+    async function cargarDatosEquipo() {
+        try {
+            const response = await fetch(`${WEB_APP_URL}?action=getEquipo&id=${idEquipo}`);
+            const res = await response.json();
+            if (res.status === "encontrado") {
+                let eq = res.equipo;
+                let html = `<strong>Equipo:</strong> ${eq.ID_Equipo} - ${eq.Denominación || ''}<br>`;
+                html += `<strong>Sistema:</strong> ${eq['Sistema / Equipo'] || ''}<br>`;
+                html += `<strong>Potencia:</strong> ${eq['Potencia KW / CV / HP'] || ''} | <strong>In:</strong> ${eq['Corriente Nominal ( In )'] || ''}`;
+                document.getElementById('detallesEquipo').innerHTML = html;
+                if (datosUsuario.nivelAcceso >= 2) {
+                    document.getElementById('formMantenimiento').classList.remove('hidden');
+                }
+            } else {
+                document.getElementById('detallesEquipo').innerHTML = `Equipo ${idEquipo} no encontrado.`;
+            }
+        } catch (e) {
+            document.getElementById('detallesEquipo').innerHTML = `Error cargando datos del equipo.`;
+        }
+    }
+
+    async function enviarRegistro() {
+        const registroData = {
+            idEquipo: idEquipo,
+            tecnico: datosUsuario.perfil,
+            corrienteR: document.getElementById('corrienteR').value,
+            tension: document.getElementById('tension').value,
+            cargaTurbina: document.getElementById('cargaTurbina').value,
+            tempAtaque: document.getElementById('tempAtaque').value,
+            tempOpuesto: document.getElementById('tempOpuesto').value,
+            accion: document.getElementById('accion').value,
+            detalles: document.getElementById('detalles').value
+        };
+        try {
+            const response = await fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify(registroData) });
+            const result = await response.json();
+            if (result.status === "success") {
+                alert("¡Registro guardado exitosamente en el Google Sheet!");
+                limpiarFormulario();
+            } else {
+                alert("Error al guardar: " + result.message);
+            }
+        } catch (e) {
+            alert("Error de red al enviar el registro.");
+        }
+    }
+
+    function limpiarFormulario() {
+        document.getElementById('corrienteR').value = '';
+        document.getElementById('tension').value = '';
+        document.getElementById('cargaTurbina').value = '';
+        document.getElementById('tempAtaque').value = '';
+        document.getElementById('tempOpuesto').value = '';
+        document.getElementById('detalles').value = '';
+    }
+</script>
 </body>
 </html>
